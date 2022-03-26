@@ -1,9 +1,12 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 LOCAL_MODULE := libjson
-LOCAL_CFLAGS := -Werror -Wno-unused-parameter
+LOCAL_PATH := $(LIBJSON_ROOT)
+LOCAL_CFLAGS := -Werror -Wno-error=unused-parameter
+ifeq ($(TARGET_COMPILE_WITH_MSM_KERNEL),true)
 LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
 LOCAL_ADDITIONAL_DEPENDENCIES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+endif
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 LOCAL_SRC_FILES := arraylist.c \
 		debug.c \
